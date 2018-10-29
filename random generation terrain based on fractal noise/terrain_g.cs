@@ -86,7 +86,7 @@ public class terrain_g : MonoBehaviour
         {
             Debug.LogWarning("No heightMap!!!");
         }
-        terrain.renderer.material = diffuseMap;
+        terrain.GetComponent<Renderer>().material = diffuseMap;
         //给mesh 赋值
         mesh.Clear();
         mesh.vertices = vertives;//,pos);

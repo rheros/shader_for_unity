@@ -1,37 +1,35 @@
-﻿/*
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+/*
 *Hi, I'm Lin Dong,
 *this shader is about snow and sand rendering
 *if you want to get more detail please enter my blog http://blog.csdn.net/wolf96
 *my email: wolf_crixus@sina.cn
 */
 Shader "Custom/snow" {
-		Properties{
-		_MainTex("Base (RGB)", 2D) = "white" {}
-		_NormalTex("Normal (RGB)", 2D) = "white" {}
 
-
+	Properties{
+			_MainTex("Base (RGB)", 2D) = "white" {}
+			_NormalTex("Normal (RGB)", 2D) = "white" {}
 			_SnowNormalTex("Snow Normal Tex", 2D) = "white" {}
 			_SnowColor("Snow Color", Color) = (0.8, 0.9, 1, 1)
 			_SnowInten("Snow Intensity", Range(-1, 1)) = 0.3
-
 			_SpecColor("Specular Color", Color) = (0.9, 0.95, 1, 1)
-
-
 			_NoiseTex("Noise Tex", 2D) = "white" {}
 			_NoiseWeight("Noise Weight", Range(0, 1)) = 0.3
-				_SpecwInten("Specular Intensity", Range(0, 2)) = 0.3
-
-				_Roughness("Roughness", Range(0, 1)) = 0.3
+			_SpecwInten("Specular Intensity", Range(0, 2)) = 0.3
+			_Roughness("Roughness", Range(0, 1)) = 0.3
 	}
 		SubShader{
+
 			pass{//平行光的的pass渲染
 			Tags{ "LightMode" = "ForwardBase" }
 			Cull Back
-				CGPROGRAM
-#pragma vertex vert
-#pragma fragment frag
-#include "UnityCG.cginc"
-#pragma target 5.0
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			#include "UnityCG.cginc"
+			#pragma target 5.0
 
 
 			sampler2D _SnowNormalTex;
@@ -65,7 +63,7 @@ Shader "Custom/snow" {
 
 			v2f vert(appdata_full v) {
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.normal = v.normal;
 				o.lightDir = ObjSpaceLightDir(v.vertex);
 				o.viewDir = ObjSpaceViewDir(v.vertex);
@@ -127,6 +125,6 @@ Shader "Custom/snow" {
 			}
 			ENDCG
 		}
-		}
 	}
+}
 

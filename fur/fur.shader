@@ -5,14 +5,14 @@
 */
 Shader "Custom/sufaceshaderYuan" {
 	Properties{
-	_EdgeLength("Edge length", Range(0.04, 0.5)) = 0.3
-	_Phong("Phong Strengh", Range(0, 2)) = 0.5
-	_MainTex("Base (RGB)", 2D) = "white" {}
-	_Color("Color", color) = (1, 1, 1, 0)
+		_EdgeLength("Edge length", Range(0.04, 0.5)) = 0.3
+		_Phong("Phong Strengh", Range(0, 2)) = 0.5
+		_MainTex("Base (RGB)", 2D) = "white" {}
+		_Color("Color", color) = (1, 1, 1, 0)
 
 		_DispTex("Disp Texture", 2D) = "gray" {}
-	_NormalMap("Normalmap", 2D) = "bump" {}
-	_Displacement("Displacement", Range(0, 2)) = 0.3
+		_NormalMap("Normalmap", 2D) = "bump" {}
+		_Displacement("Displacement", Range(0, 2)) = 0.3
 		_SpecColor("Spec color", color) = (0.5, 0.5, 0.5, 0.5)
 		_Route("Route", Range(0, 1)) = 0.5
 
@@ -33,12 +33,12 @@ Shader "Custom/sufaceshaderYuan" {
 		LOD 300
 			Cull Back
 			CGPROGRAM
-#pragma target 4.0
+		#pragma target 4.0
 
-#pragma surface surf HairShader /*alpha*/     vertex:disp tessellate:tessEdge tessphong:_Phong nolightmap 
+		#pragma surface surf HairShader /*alpha*/     vertex:disp tessellate:tessEdge tessphong:_Phong nolightmap 
 
-#include "Tessellation.cginc"
-#include "MyFunc.cginc"
+		#include "Tessellation.cginc"
+
 
 		struct appdata {
 			float4 vertex : POSITION;
